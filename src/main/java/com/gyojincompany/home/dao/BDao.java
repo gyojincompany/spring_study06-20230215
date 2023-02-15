@@ -39,16 +39,16 @@ public class BDao {
 		ResultSet rs = null;//select 일때 결과 받아주는 객체
 		
 		try {
-			
 			conn = dataSource.getConnection();//dataSource에서 connection 생성
+			System.out.println(conn);
 			
 			String sql = "SELECT * FROM mvc_board ORDER BY bid DESC";
 			//게시글 번호의 내림차순 정렬로 모든 글 목록 가져오기(최근글이 가장 위에 오도록 함)
 									
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {//rs에 들어있는 글들의 수만큼 반복
+			while(rs.next()) {//rs에 들어있는 글들의 수만큼 반복				
 				int bid = rs.getInt("bid");
 				String bname = rs.getString("bname");
 				String btitle = rs.getString("btitle");
@@ -72,7 +72,7 @@ public class BDao {
 					rs.close();
 				}
 				if(pstmt != null) {
-					rs.close();
+					pstmt.close();
 				}
 				if(conn != null) {
 					conn.close();
