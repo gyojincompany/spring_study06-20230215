@@ -22,7 +22,7 @@
 		<tr>
 			<td>${bdto.bid }</td>
 			<td>${bdto.bname }</td>
-			<td>${bdto.btitle }</td>
+			<td><a href="contentView?bid=${bdto.bid }">${bdto.btitle }</a></td>
 			<td>${bdto.bdate }</td>
 			<td>${bdto.bhit }</td>
 		</tr>

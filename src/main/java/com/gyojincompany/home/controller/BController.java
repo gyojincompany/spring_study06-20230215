@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gyojincompany.home.command.BCommand;
+import com.gyojincompany.home.command.BContentCommand;
 import com.gyojincompany.home.command.BListCommand;
 import com.gyojincompany.home.command.BWriteCommand;
 
@@ -46,6 +47,17 @@ public class BController {
 		command.excute(model);
 		
 		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/contentView")
+	public String contentView(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentCommand();
+		command.excute(model);
+		
+		return "content_view";
 	}
 
 }

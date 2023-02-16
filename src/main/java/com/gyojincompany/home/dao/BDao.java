@@ -123,4 +123,62 @@ public class BDao {
 		}
 	}
 	
+	public BDto contentView(String cid) {
+		
+		BDto dto = null;
+		
+		Connection conn = null;//DB 연결 생성
+		PreparedStatement pstmt = null;//sql 실행
+		ResultSet rs = null;//select 일때 결과 받아주는 객체
+		
+		try {
+			conn = dataSource.getConnection();//dataSource에서 connection 생성		
+			
+			String sql = "SELECT * FROM mvc_board WHERE bid=?";
+			//게시글 번호의 내림차순 정렬로 모든 글 목록 가져오기(최근글이 가장 위에 오도록 함)
+									
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cid);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {//rs에 들어있는 글들의 수만큼 반복				
+				int bid = rs.getInt("bid");
+				String bname = rs.getString("bname");
+				String btitle = rs.getString("btitle");
+				String bcontent = rs.getString("bcontent");
+				Timestamp bdate = rs.getTimestamp("bdate");
+				int bhit = rs.getInt("bhit");
+				int bgroup = rs.getInt("bgroup");
+				int bstep = rs.getInt("bstep");
+				int bindent = rs.getInt("bindent");
+				
+				dto = new BDto(bid, bname, btitle, bcontent, bdate, bhit, bgroup, bstep, bindent);
+				
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return dto;
+		
+	}
+	
 }
