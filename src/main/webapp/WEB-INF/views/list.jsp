@@ -28,6 +28,12 @@
 		</tr>
 		</c:forEach>
 		
+		<tr>
+			<td colspan="5" align="right">
+				<input type="button" value="글쓰기" onclick="javascript:window.location='writeForm'">
+			</td>		
+		</tr>
+		
 	</table>
 </body>
 </html>
