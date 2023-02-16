@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gyojincompany.home.command.BCommand;
 import com.gyojincompany.home.command.BContentCommand;
+import com.gyojincompany.home.command.BDeleteCommand;
 import com.gyojincompany.home.command.BListCommand;
+import com.gyojincompany.home.command.BModifyCommand;
 import com.gyojincompany.home.command.BWriteCommand;
 
 @Controller
@@ -70,5 +72,29 @@ public class BController {
 		
 		return "content_modify";
 	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BModifyCommand();
+		command.excute(model);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BDeleteCommand();
+		command.excute(model);
+		
+		return "redirect:list";
+	}
+	
+	
 
 }

@@ -10,7 +10,8 @@
 	<h2>게시글 내용 수정</h2>
 	<hr>
 	<table border="1" cellpadding="0" cellspacing="0" width="500">
-		<form action="modify">
+		<form action="modify" method="post">
+		<input type="hidden" name="bid" value="${contentDto.bid }">
 		<tr>
 			<th>글번호</th>
 			<td>${contentDto.bid }</td>
@@ -29,7 +30,7 @@
 		</tr>	
 		<tr>
 			<th>제 목</th>
-			<td><input type="text" name="bname" value="${contentDto.btitle }" size="60">
+			<td><input type="text" name="btitle" value="${contentDto.btitle }" size="60">
 			</td>
 		</tr>
 		<tr>
