@@ -22,7 +22,10 @@
 		<tr>
 			<td>${bdto.bid }</td>
 			<td>${bdto.bname }</td>
-			<td><a href="contentView?bid=${bdto.bid }">${bdto.btitle }</a></td>
+			<td>
+				<c:forEach begin="1" end="${bdto.bindent }">&nbsp;&nbsp;&nbsp;</c:forEach>
+				<a href="contentView?bid=${bdto.bid }">${bdto.btitle }</a>
+			</td>
 			<td>${bdto.bdate }</td>
 			<td>${bdto.bhit }</td>
 		</tr>

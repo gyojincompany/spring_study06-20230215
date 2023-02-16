@@ -12,6 +12,7 @@ import com.gyojincompany.home.command.BContentCommand;
 import com.gyojincompany.home.command.BDeleteCommand;
 import com.gyojincompany.home.command.BListCommand;
 import com.gyojincompany.home.command.BModifyCommand;
+import com.gyojincompany.home.command.BReplyCommand;
 import com.gyojincompany.home.command.BWriteCommand;
 
 @Controller
@@ -95,6 +96,26 @@ public class BController {
 		return "redirect:list";
 	}
 	
+	@RequestMapping(value = "/replyWrite")
+	public String replyWrite(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentCommand();
+		command.excute(model);
+		
+		return "reply_write";
+	}
 	
+	@RequestMapping(value = "/reply")
+	public String reply(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplyCommand();
+		command.excute(model);
+		
+		return "redirect:list";
+	}
 
 }

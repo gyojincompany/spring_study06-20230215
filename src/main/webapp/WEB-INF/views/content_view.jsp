@@ -37,7 +37,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="글답변" onclick="javascript:window.location=''">
+				<input type="button" value="글답변" onclick="javascript:window.location='replyWrite?bid=${contentDto.bid }'">
 				<input type="button" value="글수정" onclick="javascript:window.location='modifyView?bid=${contentDto.bid }'">
 				<input type="button" value="글삭제" onclick="javascript:window.location='delete?bid=${contentDto.bid }'">
 				<input type="button" value="글목록" onclick="javascript:window.location='list'">  
