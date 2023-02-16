@@ -25,6 +25,7 @@
 			<td>
 				<c:forEach begin="1" end="${bdto.bindent }">&nbsp;&nbsp;&nbsp;</c:forEach>
 				<a href="contentView?bid=${bdto.bid }">${bdto.btitle }</a>
+				
 			</td>
 			<td>${bdto.bdate }</td>
 			<td>${bdto.bhit }</td>
@@ -38,5 +39,7 @@
 		</tr>
 		
 	</table>
+	<br><br>
+	총 게시물의 개수 : ${boardCount }개
 </body>
 </html>

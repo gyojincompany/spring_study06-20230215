@@ -363,4 +363,55 @@ public class BDao {
 		
 	}
 	
+	public int boardCount() {
+		
+		Connection conn = null;//DB 연결 생성
+		PreparedStatement pstmt = null;//sql 실행
+		ResultSet rs = null;//select 일때 결과 받아주는 객체
+		
+		int boardCount = 0;
+		
+		try {
+			conn = dataSource.getConnection();//dataSource에서 connection 생성		
+			
+			String sql = "SELECT count(*) FROM mvc_board";
+			//게시글 번호의 내림차순 정렬로 모든 글 목록 가져오기(최근글이 가장 위에 오도록 함)
+									
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			System.out.println(rs);
+			
+			while(rs.next()) {//rs에 들어있는 글들의 수만큼 반복				
+				
+				//boardCount = boardCount + 1;
+				boardCount = rs.getInt(1);
+				
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return boardCount;
+		
+	}
+	
 }
