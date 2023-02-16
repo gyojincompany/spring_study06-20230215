@@ -1,11 +1,15 @@
 package com.gyojincompany.home.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gyojincompany.home.command.BCommand;
 import com.gyojincompany.home.command.BListCommand;
+import com.gyojincompany.home.command.BWriteCommand;
 
 @Controller
 public class BController {
@@ -31,6 +35,17 @@ public class BController {
 	public String writeForm() {
 		
 		return "write_form";
+	}
+	
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String write(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BWriteCommand();
+		command.excute(model);
+		
+		return "redirect:list";
 	}
 
 }

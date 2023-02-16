@@ -10,7 +10,7 @@
 	<h2>게시판 글쓰기</h2>
 	<hr>
 	<table border="1" cellpadding="0" cellspacing="0" width="500">
-	<form action="write">
+	<form action="write" method="post">
 		<tr>
 			<th>이 름</th>
 			<td><input type="text" name="bname" size="60"></td>

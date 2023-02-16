@@ -87,4 +87,40 @@ public class BDao {
 		
 	}
 	
+	public void write(String bname, String btitle, String bcontent) {
+		
+		Connection conn = null;//DB 연결 생성
+		PreparedStatement pstmt = null;//sql 실행		
+		
+		try {
+			conn = dataSource.getConnection();//dataSource에서 connection 생성	
+			String sql = "INSERT INTO mvc_board(bid, bname, btitle, bcontent, bhit, bgroup, bstep, bindent) "
+					+ "VALUES(mvc_board_seq.nextval, ?, ?, ?, 0, mvc_board_seq.currval, 0, 0)";
+			//게시글 번호의 내림차순 정렬로 모든 글 목록 가져오기(최근글이 가장 위에 오도록 함)
+									
+			pstmt = conn.prepareStatement(sql);	
+			
+			pstmt.setString(1, bname);
+			pstmt.setString(2, btitle);
+			pstmt.setString(3, bcontent);
+			
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {				
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
 }
